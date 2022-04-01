@@ -25,18 +25,27 @@
 
 /*=====[Definitions of public global variables]==============================*/
 
+///
+/// Constante del tipo alumno_s para el docente ESTEBAN_VOLENTINI
+///
 static const struct alumno_s ESTEBAN_VOLENTINI = {
     .apellidos = "VOLENTINI",
     .nombres = "Esteban Daniel",
     .documento = "23.517.968",
 };
 
+///
+/// Constante del tipo alumno_s para el alumno GONZALO_CARRENO
+///
 static const struct alumno_s GONZALO_CARRENO = {
     .apellidos = "CARRENO",
     .nombres = "Gonzalo Carreno",
     .documento = "31.789.456",
 };
 
+///
+/// Constante arreglo del tipo alumno_t
+///
 const alumno_t ALUMNOS[] = {
     &ESTEBAN_VOLENTINI,
     &GONZALO_CARRENO,
@@ -52,6 +61,15 @@ const int CANTIDAD_ALUMNOS = (sizeof(ALUMNOS) / sizeof(alumno_t));
 
 /*=====[Implementations of interrupt functions]==============================*/
 
+/**
+ * Serializa un objeto alumno pasado como parametro y devuelve si hubo un error en el proceso
+ *
+ * @param[char*] arreglo de caracteres donde se guarda el alumno serializado
+ * @param[size_t] el tamaño del arreglo de caracteres
+ * @param[const alumno_t] el objeto alumno a serializar
+ *
+ * @return[bool] si hubo o no error
+ */
 bool SerializarAlumno(char * cadena, size_t espacio, const alumno_t alumno) {
     int resultado;
     const char FORMATO[] = "{"
@@ -66,6 +84,15 @@ bool SerializarAlumno(char * cadena, size_t espacio, const alumno_t alumno) {
     return (resultado >= 0);
 }
 
+/**
+ * Serializa el arreglo completo de ALUMNOS en una cadena pasada como parametro. Devuelve si hubo error
+ * en el proceso.
+ *
+ * @param[char*] cadena en la que se serializan todos los alumnos
+ * @param[size_t] tamaño de la cadena en la que se serializan todos los alumnos
+ *
+ * @return[bool] si hubo algun error en el proceso
+ */
 bool SerializarAlumnos(char * cadena, size_t espacio) {
     static const int  cantidad = sizeof(ALUMNOS) / sizeof(alumno_t);
     int posicion = snprintf(cadena, espacio, "[\r\n  ");

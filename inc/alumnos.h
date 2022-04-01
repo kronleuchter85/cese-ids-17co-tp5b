@@ -29,6 +29,13 @@ extern "C" {
 
 /*=====[Definitions of public data types]====================================*/
 
+///
+/// Declaracion del tipo de dato alumno_t como tipo de estructura constante.
+/// Contiene los campos:
+/// - apellidos: los apellidos del alumno, 
+/// - nombres: el primer y segundo nombre del alumno
+/// - documento: el DNI del alumno
+///
 typedef struct alumno_s {
     char apellidos[30];
     char nombres[30];
@@ -39,8 +46,29 @@ typedef struct alumno_s {
 
 /*=====[Prototypes (declarations) of public functions]=======================*/
 
+
+
+/**
+ * Serializa un objeto alumno pasado como parametro y devuelve si hubo un error en el proceso
+ *
+ * @param[char*] arreglo de caracteres donde se guarda el alumno serializado
+ * @param[size_t] el tamaño del arreglo de caracteres
+ * @param[const alumno_t] el objeto alumno a serializar
+ *
+ * @return[bool] si hubo o no error
+ */
 bool SerializarAlumno(char * cadena, size_t espacio, const alumno_t alumno);
 
+
+/**
+ * Serializa el arreglo completo de ALUMNOS en una cadena pasada como parametro. Devuelve si hubo error
+ * en el proceso.
+ *
+ * @param[char*] cadena en la que se serializan todos los alumnos
+ * @param[size_t] tamaño de la cadena en la que se serializan todos los alumnos
+ *
+ * @return[bool] si hubo algun error en el proceso
+ */
 bool SerializarAlumnos(char * cadena, size_t espacio);
 
 /*=====[Prototypes (declarations) of public interrupt functions]=============*/
